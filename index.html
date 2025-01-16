@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< Updated upstream
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,8 +11,31 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        .header {
+        .navbar {
             background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .navbar a:hover {
+            color: #ddd;
+        }
+        .navbar .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .navbar .menu {
+            display: flex;
+        }
+        .header {
+            background-color: #444;
             color: #fff;
             padding: 10px 0;
             text-align: center;
@@ -57,6 +79,15 @@
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="logo">Shopping Site</div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#products">Products</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
     <div class="header">
         <h1>Shopping Front End</h1>
     </div>
