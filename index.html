@@ -34,11 +34,37 @@
         .navbar .menu {
             display: flex;
         }
-        .header {
-            background-color: #444;
+        .slideshow {
+            position: relative;
+            width: 100%;
+            max-height: 300px;
+            overflow: hidden;
+        }
+        .slides {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .slideshow-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .slideshow-buttons button {
+            background-color: rgba(0, 0, 0, 0.5);
             color: #fff;
-            padding: 10px 0;
-            text-align: center;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .slideshow-buttons button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
         }
         .container {
             display: flex;
@@ -88,9 +114,19 @@
             <a href="#contact">Contact</a>
         </div>
     </div>
-    <div class="header">
-        <h1>Shopping Front End</h1>
+    
+    <div class="slideshow">
+        <div class="slides">
+            <img src="https://via.placeholder.com/1200x300?text=Slide+1" alt="Slide 1">
+            <img src="https://via.placeholder.com/1200x300?text=Slide+2" alt="Slide 2">
+            <img src="https://via.placeholder.com/1200x300?text=Slide+3" alt="Slide 3">
+        </div>
+        <div class="slideshow-buttons">
+            <button id="prev">❮</button>
+            <button id="next">❯</button>
+        </div>
     </div>
+    
     <div class="container">
         <div class="product">
             <img src="https://via.placeholder.com/150" alt="Product Image">
@@ -111,5 +147,34 @@
             <button>Add to Cart</button>
         </div>
     </div>
+
+    <script>
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const prev = document.getElementById('prev');
+        const next = document.getElementById('next');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            const width = images[0].clientWidth;
+            slides.style.transform = `translateX(-${index * width}px)`;
+        }
+
+        prev.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showSlide(currentIndex);
+        });
+
+        next.addEventListener('click', () => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showSlide(currentIndex);
+        });
+
+        // Auto-slide every 5 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showSlide(currentIndex);
+        }, 5000);
+    </script>
 </body>
 </html>
